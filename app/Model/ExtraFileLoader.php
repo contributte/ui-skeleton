@@ -48,10 +48,7 @@ class ExtraFileLoader extends FileLoaderLatte
 		return $this;
 	}
 
-	/**
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
-	 */
-	public function getContent($fileName): string
+	public function getContent(string $fileName): string
 	{
 		if (Strings::startsWith($fileName, $this->delimiter)) {
 			$widget = Strings::substring($fileName, strlen($this->delimiter));
@@ -62,10 +59,7 @@ class ExtraFileLoader extends FileLoaderLatte
 		return parent::getContent($fileName);
 	}
 
-	/**
-	 * @phpcsSuppress SlevomatCodingStandard.TypeHints.ParameterTypeHint.MissingAnyTypeHint
-	 */
-	public function getReferredName($file, $referringFile): string
+	public function getReferredName(string $file, string $referringFile): string
 	{
 		if (Strings::startsWith($file, $this->delimiter)) {
 			return $file;
