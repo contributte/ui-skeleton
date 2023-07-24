@@ -1,0 +1,20 @@
+# ======================================
+# Config ===============================
+php:
+	date.timezone: Europe/Prague
+	# session.save_path: %tempDir%/session
+
+# ======================================
+# Parameters ===========================
+parameters:
+
+# ======================================
+# Extension ============================
+extensions:
+
+# ======================================
+# Services =============================
+services:
+	latte.latteFactory:
+		setup:
+			- addExtension(Contributte\UI\Bundler\ViteExtension(%wwwDir%/dist/manifest.json, /dist))
