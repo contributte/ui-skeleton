@@ -11,6 +11,16 @@ parameters:
 # ======================================
 # Extension ============================
 extensions:
+	inertia: App\Inertia\InertiaExtension
+
+# ======================================
+# Inertia ==============================
+inertia:
+	# Asset version for cache busting (optional)
+	# version: '1.0'
+
+	# Root view template (default: @Templates/@inertia.latte)
+	# rootView: '@Templates/@inertia.latte'
 
 # ======================================
 # Services =============================
