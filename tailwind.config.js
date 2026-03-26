@@ -7,6 +7,7 @@ module.exports = {
 		"./app/**/*.php",
 		"./assets/css/tailwind/**/*.css",
 		"./assets/**/*.js",
+		"./assets/**/*.vue",
 	],
 	safelist: [`
 		hidden w-full border-0

@@ -1,25 +1,22 @@
-import { Alpine } from "./3rd/alpine";
-
-// UI
-import { init as initNette } from "./ui/nette";
-
-// CSS
 import "./../css/tailwind.css";
+import { createApp, h } from "vue";
+import { createInertiaApp } from "@inertiajs/vue3";
 
-window.addEventListener("load", () => {
-	// Alpine global
-	// @ts-ignore
-	window.Alpine = Alpine;
+const pages = import.meta.glob("./pages/**/*.vue");
 
-	// Alpine data
-	Alpine.data('layout', () => ({}));
+void createInertiaApp({
+	resolve: async (name) => {
+		const page = pages[`./pages/${name}.vue`];
 
-	// Initialize Alpine
-	Alpine.start();
+		if (!page) {
+			throw new Error(`Unknown Inertia page: ${name}`);
+		}
+
+		return await page();
+	},
+	setup({ el, App, props, plugin }) {
+		createApp({ render: () => h(App, props) })
+			.use(plugin)
+			.mount(el);
+	},
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-	// UI
-	initNette();
-});
-

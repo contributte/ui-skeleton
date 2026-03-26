@@ -3,4 +3,18 @@
 @tailwind utilities;
 
 @layer base {
+	body {
+		@apply min-h-screen bg-gray-900 text-gray-100;
+		background-image:
+			radial-gradient(circle at top, rgba(245, 158, 11, 0.28), transparent 32%),
+			linear-gradient(135deg, rgba(12, 10, 9, 0.96), rgba(28, 25, 23, 0.92));
+	}
+
+	a {
+		@apply transition-colors duration-200;
+	}
+
+	::selection {
+		background: rgba(251, 191, 36, 0.28);
+	}
 }

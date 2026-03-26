@@ -13,10 +13,22 @@
   ],
   "license": "MIT",
   "type": "project",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../ui",
+      "options": {
+        "symlink": true,
+        "versions": {
+          "contributte/ui": "0.3.x-dev"
+        }
+      }
+    }
+  ],
   "require": {
     "php": "^8.4",
     "contributte/nella": "^0.3",
-    "contributte/ui": "^0.2"
+    "contributte/ui": "^0.3@dev"
   },
   "require-dev": {
     "contributte/qa": "^0.4",

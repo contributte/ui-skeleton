@@ -1,10 +1,12 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import vue from '@vitejs/plugin-vue';
 
 export default defineConfig(({ mode }) => {
 	const DEV = mode === 'development';
 
 	return {
+		plugins: [vue()],
 		resolve: {
 			alias: {
 				'@': resolve(__dirname, 'assets/js'),
