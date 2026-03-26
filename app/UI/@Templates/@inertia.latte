@@ -1,0 +1,17 @@
+{varType Contributte\UI\Inertia\Page $page}
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>UI Skeleton</title>
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	{vitecss assets/js/site.ts}
+	{vitejs assets/js/site.ts}
+	{vitejs assets/js/inertia.ts}
+	{=inertiaHead()}
+</head>
+<body>
+	{=inertia($page)}
+</body>
+</html>

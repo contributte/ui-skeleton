@@ -13,10 +13,16 @@
   ],
   "license": "MIT",
   "type": "project",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "git@github.com:ohmyfelix/ui.git"
+    }
+  ],
   "require": {
     "php": "^8.4",
     "contributte/nella": "^0.3",
-    "contributte/ui": "^0.2"
+    "contributte/ui": "dev-feat/inertia-support"
   },
   "require-dev": {
     "contributte/qa": "^0.4",

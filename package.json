@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "dependencies": {
+    "@inertiajs/vue3": "^2.2.15",
     "@alpinejs/collapse": "^3.5.1",
     "@alpinejs/trap": "^3.7.0",
     "alpinejs": "^3.9.5",
@@ -10,9 +11,12 @@
     "naja": "^2.2.0",
     "nette-forms": "^3.0.0",
     "tippy.js": "^6.3.1",
-    "tom-select": "^2.0.0-rc.5"
+    "tom-select": "^2.0.0-rc.5",
+    "vue": "^3.5.17"
   },
   "devDependencies": {
+    "@vitejs/plugin-vue": "^1.10.2",
+    "@vue/compiler-sfc": "^3.5.17",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.0",
     "@types/node": "^20.4.4",

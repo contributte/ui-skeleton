@@ -58,8 +58,15 @@ dev:
 
 .PHONY: build
 build:
-	npm install
+	npm ci
 	npm run build
+
+.PHONY: verify
+verify:
+	$(MAKE) setup
+	$(MAKE) build
+	$(MAKE) tests
+	$(MAKE) qa
 
 .PHONY: assets
 assets:

@@ -11,9 +11,14 @@ parameters:
 # ======================================
 # Extension ============================
 extensions:
+	inertia: Contributte\UI\DI\InertiaExtension
 
 # ======================================
 # Services =============================
+inertia:
+	manifest: %wwwDir%/dist/manifest.json
+	template: %appDir%/UI/@Templates/@inertia.latte
+
 services:
 	latte.latteFactory:
 		setup:

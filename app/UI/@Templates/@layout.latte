@@ -5,12 +5,14 @@
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>{block #title|striptags}UI Skeleton{/}</title>
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+	{block #head}{/block}
 
 	<!-- CSS -->
-	{vitecss assets/js/app.ts}
+	{vitecss assets/js/site.ts}
 
 	<!-- JS -->
-	{vitejs assets/js/app.ts}
+	{vitejs assets/js/site.ts}
 </head>
 <body>
 
@@ -20,6 +22,12 @@
 			<h1 class="font-bold text-3xl">
 				Contributte / UI Skeleton
 			</h1>
+			<div class="mt-4 flex flex-wrap gap-3 text-sm">
+				<a n:href="Home:default" class="rounded-full border border-gray-200 px-4 py-2 text-gray-700 hover:border-blue-300 hover:text-blue-600">Overview</a>
+				<a n:href="Showcase:inertia" class="rounded-full border border-gray-200 px-4 py-2 text-gray-700 hover:border-blue-300 hover:text-blue-600">Inertia app</a>
+				<a n:href="Showcase:widgets" class="rounded-full border border-gray-200 px-4 py-2 text-gray-700 hover:border-blue-300 hover:text-blue-600">Widgets</a>
+				<a n:href="Showcase:vue" class="rounded-full border border-gray-200 px-4 py-2 text-gray-700 hover:border-blue-300 hover:text-blue-600">Pure Vue</a>
+			</div>
 		</div>
 
 		<div n:if="$flashes !== []" n:inner-foreach="$flashes as $flash">
@@ -39,6 +47,4 @@
 </div>
 </body>
 </html>
-
-
 

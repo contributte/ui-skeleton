@@ -1,0 +1,144 @@
+{block #title}{$title}{/block}
+
+{varType array<array{key: string, label: string, href: string, active: bool}> $navigation}
+
+{block #content}
+	<div class="space-y-10">
+		<section class="rounded-[2rem] border border-gray-200 bg-white p-8 shadow-sm">
+			<div class="max-w-4xl space-y-4">
+				<p class="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Latte + Alpine widgets</p>
+				<h2 class="text-4xl font-black tracking-tight text-gray-950">Widget Workshop</h2>
+				<p class="text-lg leading-8 text-gray-600">This page stays completely server-rendered. Latte shapes the markup, Alpine adds the interaction layer, and every example remains easy to lift into a classic Nette application.</p>
+			</div>
+
+			<nav class="mt-8 flex flex-wrap gap-3 text-sm">
+				<a
+					n:foreach="$navigation as $item"
+					href="{$item['href']}"
+					n:class="'rounded-full border px-4 py-2 transition', $item['active'] ? 'border-cyan-300 bg-cyan-50 text-cyan-700', !$item['active'] ? 'border-gray-200 text-gray-700 hover:border-cyan-300 hover:text-cyan-700'"
+				>
+					{$item['label']}
+				</a>
+			</nav>
+		</section>
+
+		<section class="grid gap-8 xl:grid-cols-[220px_minmax(0,1fr)]">
+			<aside class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm xl:sticky xl:top-6 xl:self-start">
+				<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Quick jump</p>
+				<nav class="mt-5 space-y-2 text-sm">
+					<a href="#collapse" class="block rounded-xl px-3 py-2 text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Collapse</a>
+					<a href="#tabs" class="block rounded-xl px-3 py-2 text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Tabs</a>
+					<a href="#dropdown" class="block rounded-xl px-3 py-2 text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Dropdown</a>
+					<a href="#modal" class="block rounded-xl px-3 py-2 text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Modal</a>
+					<a href="#tooltip" class="block rounded-xl px-3 py-2 text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Tooltip</a>
+				</nav>
+
+				<div class="mt-8 rounded-2xl border border-dashed border-cyan-200 bg-cyan-50 p-4 text-sm leading-7 text-cyan-900">
+					These examples are intentionally simple: server-rendered first, Alpine-enhanced second.
+				</div>
+			</aside>
+
+			<div class="space-y-8">
+				<section id="collapse" x-data="{ expanded: false }" class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+					<div class="max-w-3xl">
+						<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Disclosure</p>
+						<h3 class="mt-3 text-2xl font-bold text-gray-950">Collapse</h3>
+						<p class="mt-3 text-sm leading-7 text-gray-600">Great for advanced filters, FAQs, or secondary detail that should stay hidden by default.</p>
+					</div>
+
+					<button @click="expanded = !expanded" class="mt-6 flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-left text-sm font-medium text-gray-900 transition hover:border-cyan-300 hover:bg-cyan-50">
+						<span>What should a reusable widget optimize for?</span>
+						<span x-text="expanded ? 'Hide' : 'Reveal'"></span>
+					</button>
+
+					<div x-show="expanded" x-collapse x-cloak class="mt-4 rounded-2xl border border-cyan-200 bg-cyan-50 p-4 text-sm leading-7 text-cyan-950">
+						Predictable behavior, clear escape hatches, and markup that stays understandable to backend-oriented teams.
+					</div>
+				</section>
+
+				<section id="tabs" x-data="{ tab: 'overview' }" class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+					<div class="max-w-3xl">
+						<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Navigation</p>
+						<h3 class="mt-3 text-2xl font-bold text-gray-950">Tabs</h3>
+						<p class="mt-3 text-sm leading-7 text-gray-600">Tabs work well when related content belongs in one surface and should not force a page transition.</p>
+					</div>
+
+					<div class="mt-6 inline-flex flex-wrap rounded-full border border-gray-200 bg-gray-50 p-1">
+						<button @click="tab = 'overview'" :class="tab === 'overview' ? 'bg-cyan-100 text-cyan-900' : 'text-gray-500 hover:text-gray-900'" class="rounded-full px-4 py-2 text-sm transition">Overview</button>
+						<button @click="tab = 'patterns'" :class="tab === 'patterns' ? 'bg-cyan-100 text-cyan-900' : 'text-gray-500 hover:text-gray-900'" class="rounded-full px-4 py-2 text-sm transition">Patterns</button>
+						<button @click="tab = 'a11y'" :class="tab === 'a11y' ? 'bg-cyan-100 text-cyan-900' : 'text-gray-500 hover:text-gray-900'" class="rounded-full px-4 py-2 text-sm transition">Accessibility</button>
+					</div>
+
+					<div class="mt-4 rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm leading-7 text-gray-700">
+						<p x-show="tab === 'overview'">Use tabs for settings, profiles, or compact docs where context should stay visible.</p>
+						<p x-show="tab === 'patterns'" x-cloak>Keep labels short, content scoped, and avoid turning tabs into hidden site navigation.</p>
+						<p x-show="tab === 'a11y'" x-cloak>Support focus visibility and preserve a logical reading order for keyboard users.</p>
+					</div>
+				</section>
+
+				<section id="dropdown" x-data="{ open: false }" @keydown.escape.window="open = false" class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+					<div class="max-w-3xl">
+						<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Floating UI</p>
+						<h3 class="mt-3 text-2xl font-bold text-gray-950">Dropdown</h3>
+						<p class="mt-3 text-sm leading-7 text-gray-600">Contextual menus should stay compact, dismiss easily, and remain attached to the user action that opened them.</p>
+					</div>
+
+					<div class="relative mt-6 inline-block">
+						<button @click="open = !open" class="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 transition hover:border-cyan-300 hover:bg-cyan-50">Open quick actions</button>
+						<div x-show="open" x-cloak @click.away="open = false" class="absolute left-0 top-14 z-10 w-64 rounded-2xl border border-gray-200 bg-white p-2 shadow-xl">
+							<a href="#" class="block rounded-xl px-3 py-2 text-sm text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Inspect widget state</a>
+							<a href="#" class="mt-1 block rounded-xl px-3 py-2 text-sm text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Duplicate pattern notes</a>
+							<a href="#modal" class="mt-1 block rounded-xl px-3 py-2 text-sm text-gray-700 transition hover:bg-cyan-50 hover:text-cyan-700">Jump to dialog example</a>
+						</div>
+					</div>
+				</section>
+
+				<section id="modal" x-data="{ open: false }" @keydown.escape.window="open = false" class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+					<div class="max-w-3xl">
+						<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Overlay</p>
+						<h3 class="mt-3 text-2xl font-bold text-gray-950">Modal</h3>
+						<p class="mt-3 text-sm leading-7 text-gray-600">Dialogs should be used sparingly for decisions that truly need focus and separation from the rest of the page.</p>
+					</div>
+
+					<button @click="open = true" class="mt-6 rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-medium text-gray-900 transition hover:border-cyan-300 hover:bg-cyan-50">Launch review dialog</button>
+
+					<div x-show="open" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-gray-950/50 px-4">
+						<div @click.away="open = false" class="w-full max-w-lg rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-2xl">
+							<div class="flex items-center justify-between gap-4">
+								<div>
+									<p class="text-xs font-semibold uppercase tracking-[0.28em] text-cyan-600">Review</p>
+									<h4 class="mt-3 text-2xl font-bold text-gray-950">Approve this widget pattern?</h4>
+								</div>
+								<button @click="open = false" class="rounded-full border border-gray-200 px-3 py-2 text-sm text-gray-600">Close</button>
+							</div>
+
+							<p class="mt-5 text-sm leading-7 text-gray-600">The goal is to keep the contract tiny: open, close, click-away dismissal, and focus staying inside the dialog while it is visible.</p>
+
+							<div class="mt-6 flex justify-end gap-3">
+								<button @click="open = false" class="rounded-full border border-gray-200 px-4 py-2 text-sm text-gray-600">Not yet</button>
+								<button @click="open = false" class="rounded-full border border-cyan-300 bg-cyan-50 px-4 py-2 text-sm font-medium text-cyan-700">Looks good</button>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section id="tooltip" x-data="{ open: false }" class="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm">
+					<div class="max-w-3xl">
+						<p class="text-xs font-semibold uppercase tracking-[0.28em] text-gray-500">Micro guidance</p>
+						<h3 class="mt-3 text-2xl font-bold text-gray-950">Tooltip</h3>
+						<p class="mt-3 text-sm leading-7 text-gray-600">Tooltips are for lightweight hints only. If content is essential, it should be visible without hover.</p>
+					</div>
+
+					<div class="mt-6 flex items-center gap-4">
+						<div class="relative inline-block">
+							<button @mouseenter="open = true" @mouseleave="open = false" class="rounded-full border border-gray-200 bg-gray-50 px-4 py-2 text-sm font-medium text-gray-900 transition hover:border-cyan-300 hover:bg-cyan-50">Hover for hint</button>
+							<div x-show="open" x-cloak class="absolute left-1/2 top-full z-10 mt-3 w-64 -translate-x-1/2 rounded-xl border border-cyan-200 bg-cyan-50 px-3 py-2 text-xs leading-6 text-cyan-950 shadow-lg">
+								Use tooltips for microcopy, not for actions, warnings, or required instructions.
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</section>
+	</div>
+{/block}
