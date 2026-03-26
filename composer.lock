@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9039d7c76d9c22986ce2701b18dbbd95",
+    "content-hash": "3f476ae47f4f4b3bbcadcf62bf2184bb",
     "packages": [
         {
             "name": "contributte/application",
@@ -533,11 +533,17 @@
         },
         {
             "name": "contributte/ui",
-            "version": "0.3.x-dev",
+            "version": "dev-feat/inertia-support",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ohmyfelix/ui.git",
+                "reference": "28eee4d68a5392d4cf7903f84bbafe86b5c0d8fc"
+            },
             "dist": {
-                "type": "path",
-                "url": "../ui",
-                "reference": "f75590fa924fd704854478c1aefa13c23beb683c"
+                "type": "zip",
+                "url": "https://api.github.com/repos/ohmyfelix/ui/zipball/28eee4d68a5392d4cf7903f84bbafe86b5c0d8fc",
+                "reference": "28eee4d68a5392d4cf7903f84bbafe86b5c0d8fc",
+                "shasum": ""
             },
             "require": {
                 "latte/latte": "^3.0.12",
@@ -589,10 +595,16 @@
                 "nette",
                 "ui"
             ],
-            "transport-options": {
-                "symlink": true,
-                "relative": true
-            }
+            "support": {
+                "source": "https://github.com/ohmyfelix/ui/tree/feat/inertia-support"
+            },
+            "funding": [
+                {
+                    "type": "github",
+                    "url": "https://github.com/f3l1x"
+                }
+            ],
+            "time": "2026-03-26T10:55:23+00:00"
         },
         {
             "name": "contributte/utils",

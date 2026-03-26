@@ -1,0 +1,10 @@
+{block #title}{$title}{/block}
+
+{block #head}
+	{vitejs assets/js/vue-demo.ts}
+{/block}
+
+{block #content}
+	<script type="application/json" id="vue-demo-props">{$vuePayloadJson|noescape}</script>
+	<div id="vue-demo"></div>
+{/block}

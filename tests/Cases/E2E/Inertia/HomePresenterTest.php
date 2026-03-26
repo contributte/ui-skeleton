@@ -47,7 +47,7 @@ final class HomePresenterTest extends TestCase
 
 		Assert::contains('data-page=', $output);
 		Assert::contains('Home/Index', $output);
-		Assert::contains('app.', $output);
+		Assert::contains('/dist/inertia.', $output);
 	}
 
 }

@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
 	const DEV = mode === 'development';
 
 	return {
+		base: '/dist/',
 		plugins: [vue()],
 		resolve: {
 			alias: {
@@ -31,7 +32,9 @@ export default defineConfig(({ mode }) => {
 					assetFileNames: DEV ? '[name].[ext]' : '[name].[hash].[ext]',
 				},
 				input: {
-					app: './assets/js/app.ts'
+					site: './assets/js/site.ts',
+					inertia: './assets/js/inertia.ts',
+					vueDemo: './assets/js/vue-demo.ts',
 				}
 			}
 		},
